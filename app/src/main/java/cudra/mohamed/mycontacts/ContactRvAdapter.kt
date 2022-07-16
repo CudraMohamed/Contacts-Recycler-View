@@ -5,29 +5,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import cudra.mohamed.mycontacts.databinding.ContactListItemBinding
 
 class ContactRvAdapter (var contactList:List<Contact>):
 RecyclerView.Adapter<ContactViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        var itemView = LayoutInflater.from(parent.context).inflate(R.layout.contact_list_item,parent,false)
-        return ContactViewHolder(itemView)
+        var binding=ContactListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        var contactsViewHolder=ContactViewHolder(binding)
+        return contactsViewHolder
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {   //position->itemView
         var currentContact=contactList.get(position)
-        holder.tvName.text=currentContact.name
-        holder.tvContact.text=currentContact.phoneNumber
-        holder.tvEmail.text=currentContact.email
-        holder.tvLocation.text=currentContact.address
+        holder.binding.tvName.text=currentContact.name
+        holder.binding.tvContact.text=currentContact.phoneNumber
+        holder.binding.tvEmail.text=currentContact.email
+        holder.binding.tvLocation.text=currentContact.address
+        Picasso.get().load(currentContact.image)
+            .placeholder(R.drawable.ic_baseline_person_24)
+            .error(R.drawable.ic_baseline_error_24)
+            .resize(100,100)
+            .centerCrop()
+            .into(holder.binding.ivContact)
     }
 
     override fun getItemCount(): Int {
         return contactList.size
     }
 }
-class ContactViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-    var tvName=itemView.findViewById<TextView>(R.id.tvName)
-    var tvContact=itemView.findViewById<TextView>(R.id.tvContact)
-    var tvEmail=itemView.findViewById<TextView>(R.id.tvEmail)
-    var tvLocation=itemView.findViewById<TextView>(R.id.tvLocation)
+class ContactViewHolder(var binding:ContactListItemBinding):RecyclerView.ViewHolder(binding.root){
 }
