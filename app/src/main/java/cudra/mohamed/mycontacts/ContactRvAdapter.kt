@@ -1,9 +1,11 @@
 package cudra.mohamed.mycontacts
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import cudra.mohamed.mycontacts.databinding.ContactListItemBinding
@@ -28,6 +30,18 @@ RecyclerView.Adapter<ContactViewHolder>(){
             .resize(100,100)
             .centerCrop()
             .into(holder.binding.ivContact)
+
+        var context=holder.itemView.context
+        holder.binding.ivContact.setOnClickListener {
+            Toast.makeText(context,"You have clicked ${currentContact.name} the image",Toast.LENGTH_SHORT).show()
+        }
+
+        holder.binding.cvContacts.setOnClickListener {
+            val intent=Intent(context,ViewContactActivity::class.java)
+            intent.putExtra("NAME",currentContact.name) //obtaining details we passed
+            intent.putExtra("EMAIL",currentContact.email)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
