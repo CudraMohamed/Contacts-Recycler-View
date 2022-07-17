@@ -40,6 +40,9 @@ RecyclerView.Adapter<ContactViewHolder>(){
             val intent=Intent(context,ViewContactActivity::class.java)
             intent.putExtra("NAME",currentContact.name) //obtaining details we passed
             intent.putExtra("EMAIL",currentContact.email)
+            intent.putExtra("PHONE",currentContact.phoneNumber)
+            intent.putExtra("ADDRESS",currentContact.address)
+            intent.putExtra("IMAGE",currentContact.image)
             context.startActivity(intent)
         }
     }
