@@ -33,7 +33,7 @@ RecyclerView.Adapter<ContactViewHolder>(){
 
         var context=holder.itemView.context
         holder.binding.ivContact.setOnClickListener {
-            Toast.makeText(context,"You have clicked ${currentContact.name} the image",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"You have clicked ${currentContact.name} image",Toast.LENGTH_SHORT).show()
         }
 
         holder.binding.cvContacts.setOnClickListener {
