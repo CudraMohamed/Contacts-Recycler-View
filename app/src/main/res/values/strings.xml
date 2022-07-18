@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyContacts</string>
+    <string name="_0712345567">0712345567</string>
+    <string name="name">Name</string>
+    <string name="blabla_gmail_com">blabla@gmail.com</string>
+    <string name="_616_korongo_rd">616 Korongo RD</string>
 </resources>
