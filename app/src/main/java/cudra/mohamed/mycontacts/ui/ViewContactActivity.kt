@@ -1,10 +1,12 @@
-package cudra.mohamed.mycontacts
+package cudra.mohamed.mycontacts.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
+import cudra.mohamed.mycontacts.R
 import cudra.mohamed.mycontacts.databinding.ActivityViewContactBinding
 
 class ViewContactActivity : AppCompatActivity() {
@@ -13,18 +15,21 @@ class ViewContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityViewContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.ivBack.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         getExtras()
     }
     fun getExtras(){
         val extras=intent.extras
-        val image=extras?.getString("IMAGE","")
-        Picasso.get().load(image)
-            .placeholder(R.drawable.ic_baseline_person_24)
-            .error(R.drawable.ic_baseline_error_24)
-            .resize(100,100)
-            .centerCrop()
-            .networkPolicy(NetworkPolicy.OFFLINE)
-            .into(binding.imgViewCon)
+//        val image=extras?.getString("IMAGE","")
+//        Picasso.get().load(image)
+//            .placeholder(R.drawable.ic_baseline_person_24)
+//            .error(R.drawable.ic_baseline_error_24)
+//            .resize(100,100)
+//            .centerCrop()
+//            .networkPolicy(NetworkPolicy.OFFLINE)
+//            .into(binding.imgViewCon)
 
         val name=extras?.getString("NAME","")
         binding.tvNameView.text=name
